@@ -7,9 +7,10 @@ pipeline {
 
     stages {
 
-        stage('Maven Version') {
+        stage('Code Checkout') {
             steps {
-                sh "mvn -version"
+                git branch: 'main',
+                url:'https://github.com/MehdiHattab/Hattab_Mehdi_4SAE9.git'
             }
         }
 
@@ -19,7 +20,7 @@ pipeline {
             }
         }
 
-        stage('Package') {
+        stage('Code Build') {
             steps {
                 sh "mvn package"
             }
