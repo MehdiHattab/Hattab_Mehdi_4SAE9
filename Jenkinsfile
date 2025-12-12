@@ -45,19 +45,19 @@ pipeline {
             }
         }
 
-        stage('Docker Push') {
-            steps {
-                script {
-                    sh 'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin'
-                    sh "docker push hattabmehdi/student-management:1.0"
-                }
-            }
-        }
+//        stage('Docker Push') {
+//            steps {
+//                script {
+//                    sh 'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin'
+//                    sh "docker push hattabmehdi/student-management:1.0"
+//                }
+//            }
+//        }
         stage('Deploy to Kubernetes') {
             steps {
                 script {
                     sh "kubectl apply -f spring-deployment.yaml -n devops"
-                    sh "kubectl rollout status deployment/spring-app -n devops"
+                    sh "kubectl apply -f mysql-deployment.yaml -n devops"
                 }
             }
         }
