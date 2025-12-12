@@ -53,5 +53,13 @@ pipeline {
                 }
             }
         }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh "kubectl apply -f spring-deployment.yaml -n devops"
+                    sh "kubectl rollout status deployment/spring-app -n devops"
+                }
+            }
+        }
     }
 }
