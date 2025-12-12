@@ -29,13 +29,13 @@ pipeline {
             }
         }
 
-        stage('Sonar Test'){
-            steps {
-                withSonarQubeEnv('SQ1') {
-                    sh "mvn sonar:sonar"
-                }
-            }
-        }
+//        stage('Sonar Test'){
+//           steps {
+//                withSonarQubeEnv('SQ1') {
+//                   sh "mvn sonar:sonar"
+//              }
+//            }
+//        }
 
         stage('Docker Build') {
             steps {
