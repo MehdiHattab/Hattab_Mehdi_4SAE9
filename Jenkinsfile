@@ -45,14 +45,15 @@ pipeline {
             }
         }
 
-//        stage('Docker Push') {
-//            steps {
-//                script {
-//                    sh 'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin'
-//                    sh "docker push hattabmehdi/student-management:1.0"
-//                }
-//            }
-//        }
+
+    stage('Docker Push') {
+            steps {
+                script {
+                    sh 'echo $DOCKER_CREDENTIALS_PSW | docker login -u $DOCKER_CREDENTIALS_USR --password-stdin'
+                    sh "docker push hattabmehdi/student-management:1.0"
+                }
+            }
+        }
         stage('Deploy to Kubernetes') {
             steps {
                 script {
